@@ -15,7 +15,7 @@ public class Vehiculos {
 
 
     public Vehiculos(int id, String marca, String modelo, byte[] imagen, float precio, String descripcion) {
-        
+
         this.id = id;
         this.marca = marca;
         this.modelo = modelo;
@@ -24,6 +24,8 @@ public class Vehiculos {
         this.precio = precio;
         this.descripcion = descripcion;
     }
+
+
 
     public int getId() {
         return id;
