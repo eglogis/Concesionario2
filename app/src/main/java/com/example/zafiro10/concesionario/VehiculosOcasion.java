@@ -3,7 +3,7 @@ package com.example.zafiro10.concesionario;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-public class Vehiculos {
+public class VehiculosOcasion {
 
     private int id;
     private String marca;
@@ -13,8 +13,7 @@ public class Vehiculos {
     private float precio;
     private String descripcion;
 
-
-    public Vehiculos(int id, String marca, String modelo, byte[] imagen, float precio, String descripcion) {
+    public VehiculosOcasion(int id, String marca, String modelo, byte[] imagen, float precio, String descripcion) {
 
         this.id = id;
         this.marca = marca;
@@ -25,13 +24,11 @@ public class Vehiculos {
         this.descripcion = descripcion;
     }
 
-
-
-    public int getIdNuevo() {
+    public int getIdOcasion() {
         return id;
     }
 
-    public void setIdNuevo(int id) {
+    public void setIdOcasion(int id) {
         this.id = id;
     }
 
