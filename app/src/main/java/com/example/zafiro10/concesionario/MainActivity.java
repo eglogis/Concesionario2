@@ -1,5 +1,6 @@
 package com.example.zafiro10.concesionario;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,8 +32,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public static ListView listView;
 
     public static adaptadorCochesNuevos adapter;
+    public static adaptadorExtrasNuevos adapterExtras;
 
     public static ArrayList<Vehiculos> arrayVehiculos = new ArrayList();
+
+    public static  Vehiculos VehiculosDetalles;
+
+    public static ArrayList<Vehiculos> arrayVehiculosOcasion = new ArrayList();
+
+    public static ArrayList<Extras> arrayExtras = new ArrayList<Extras>();
+
+    boolean click =false;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -78,8 +90,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                click = !click;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+
+                    Interpolator interpolador = AnimationUtils.loadInterpolator(getBaseContext(),
+                            android.R.interpolator.fast_out_slow_in);
+
+                    view.animate()
+                            .rotation(click ? 90f : 0)
+                            .setInterpolator(interpolador)
+                            .start();
+                }
+
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
             }
         });
 
@@ -150,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 ConectorBaseDatos databaseAccess = ConectorBaseDatos.getInstance(getActivity());
                 databaseAccess.AbrirConexion();
-                arrayVehiculos = databaseAccess.todas_las_provincias();
+                arrayVehiculos = databaseAccess.todos_los_coches();
                 databaseAccess.CerrarConexcion();
 
                 adapter = new adaptadorCochesNuevos(getActivity(), arrayVehiculos);
@@ -162,20 +187,58 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     public void onItemClick(AdapterView<?> adapter, View v, int position,
                                             long arg3)
                     {
-
+                        VehiculosDetalles = arrayVehiculos.get(position);
+                        Intent intent = new Intent(getActivity(), Detalles.class);
+                        startActivity(intent);
                     }
                 });
 
-
-
-
-
             }
             if(getArguments().getInt(ARG_SECTION_NUMBER) == 2) {
-                textView.setText("adios");
+                //textView.setText("adios");
+
+                listView = (ListView) rootView.findViewById(R.id.listacoches);
+
+                ConectorBaseDatos databaseAccess = ConectorBaseDatos.getInstance(getActivity());
+                databaseAccess.AbrirConexion();
+                arrayVehiculosOcasion = databaseAccess.todos_los_coches_ocasion();
+                databaseAccess.CerrarConexcion();
+
+                adapter = new adaptadorCochesNuevos(getActivity(), arrayVehiculosOcasion);
+                listView.setAdapter(adapter);
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapter, View v, int position,
+                                            long arg3)
+                    {
+
+                    }
+                });
             }
             if(getArguments().getInt(ARG_SECTION_NUMBER) == 3) {
-                textView.setText("buenos dias");
+                //textView.setText("buenos dias");
+
+                listView = (ListView) rootView.findViewById(R.id.listacoches);
+
+                ConectorBaseDatos databaseAccess = ConectorBaseDatos.getInstance(getActivity());
+                databaseAccess.AbrirConexion();
+                arrayExtras = databaseAccess.todos_los_extras();
+                databaseAccess.CerrarConexcion();
+
+                adapterExtras = new adaptadorExtrasNuevos(getActivity(), arrayExtras);
+                listView.setAdapter(adapterExtras);
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapter, View v, int position,
+                                            long arg3)
+                    {
+
+                    }
+                });
             }
             return rootView;
         }

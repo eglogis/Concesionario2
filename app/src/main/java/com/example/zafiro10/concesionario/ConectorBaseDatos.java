@@ -35,7 +35,7 @@ public class ConectorBaseDatos{
     }
 
     //METODO PARA RECUPERAR TODOS LOS COCHES NUEVO DE LA BASE DE DATOS
-    ArrayList<Vehiculos> todas_las_provincias()
+    ArrayList<Vehiculos> todos_los_coches()
     {
         Cursor c;
         //Array donde se devuelven todos los coches
@@ -65,7 +65,66 @@ public class ConectorBaseDatos{
         return arrayVehiculos;
 
 
+    }
+
+    //METODO PARA RECUPERAR LOS COCHES DE OCASION DE LA BASE DE DATOS
+    ArrayList<Vehiculos> todos_los_coches_ocasion()
+    {
+        Cursor c;
+        //Array donde se devuelven todos los coches
+        ArrayList<Vehiculos> arrayVehiculos = new ArrayList<Vehiculos>();
+
+
+        //definimos la sentencia sql en una cadena
+        // String[] valores_recuperar = {"cod_provincia", "nombre_provincia", "num_habitantes"};
+
+        //Ejecutamos la cadena
+        //c = databases.query("provincia", valores_recuperar,null, null, null, null, null, null);
+        c = database.rawQuery(" SELECT * FROM vehiculos_ocasion", null);
+
+        //Nos aseguramos de que existe al menos un registro
+        if (c.moveToFirst()) {
+            //Recorremos el cursor hasta que no haya más registros
+            do {
+
+                arrayVehiculos.add(new Vehiculos(c.getInt(0),c.getString(1),c.getString(2), c.getBlob(3), c.getFloat(4), c.getString(5)));
+
+            } while(c.moveToNext());
+        }
+        //cerramos el cursor
+        c.close();
+
+        //devolvemos el array
+        return arrayVehiculos;
+
+
     }//fin numero_de_libros
+
+    //METODO PARA OBTENER TODOS LOS EXTRAS DE LA BASE DE DATOS
+    ArrayList<Extras> todos_los_extras()
+    {
+        Cursor c;
+        //Array donde se devuelven todos los coches
+        ArrayList<Extras> arrayExtras = new ArrayList<Extras>();
+
+        //Ejecutamos la cadena
+        c = database.rawQuery(" SELECT * FROM extras_vehiculos", null);
+
+        //Nos aseguramos de que existe al menos un registro
+        if (c.moveToFirst()) {
+            //Recorremos el cursor hasta que no haya más registros
+            do {
+
+                arrayExtras.add(new Extras(c.getInt(0), c.getString(1), c.getString(2), c.getFloat(3)));
+
+            } while(c.moveToNext());
+        }
+        //cerramos el cursor
+        c.close();
+
+        //devolvemos el array
+        return arrayExtras;
+    }
 
 
 
