@@ -69,7 +69,7 @@ public class adaptadorCochesNuevos extends BaseAdapter {
         modelo.setText(dir.getModelo());
 
         TextView precio = (TextView) v.findViewById(R.id.txvPrecio);
-        precio.setText(Float.toString(dir.getPrecio()));
+        precio.setText(Float.toString(dir.getPrecio())+ "€");
 
         TextView descripcion = (TextView) v.findViewById(R.id.txvDescripcion);
         descripcion.setText(dir.getDescripcion());

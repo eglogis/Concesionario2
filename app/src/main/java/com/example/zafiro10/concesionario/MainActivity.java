@@ -26,11 +26,11 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
 
-    private ListView listView;
+    public static ListView listView;
 
-    private adaptadorCochesNuevos adapter;
+    public static adaptadorCochesNuevos adapter;
 
-    private ArrayList<Vehiculos> arrayVehiculos = new ArrayList();
+    public static ArrayList<Vehiculos> arrayVehiculos = new ArrayList();
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -53,15 +53,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.listView = (ListView) findViewById(R.id.listacoches);
-        ConectorBaseDatos databaseAccess = ConectorBaseDatos.getInstance(this);
-        databaseAccess.AbrirConexion();
-        arrayVehiculos = databaseAccess.todas_las_provincias();
-        databaseAccess.CerrarConexcion();
 
-        adapter = new adaptadorCochesNuevos(this, arrayVehiculos);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(this);
+
+
+
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -150,6 +145,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             if(getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
+
+                listView = (ListView) rootView.findViewById(R.id.listacoches);
+
+                ConectorBaseDatos databaseAccess = ConectorBaseDatos.getInstance(getActivity());
+                databaseAccess.AbrirConexion();
+                arrayVehiculos = databaseAccess.todas_las_provincias();
+                databaseAccess.CerrarConexcion();
+
+                adapter = new adaptadorCochesNuevos(getActivity(), arrayVehiculos);
+                listView.setAdapter(adapter);
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapter, View v, int position,
+                                            long arg3)
+                    {
+
+                    }
+                });
+
 
 
 
