@@ -9,7 +9,7 @@
     </style>
 
     <style name="AppTheme.NoActionBar">
-        <item name="android:textColorPrimary">#01DF01</item>
+        <item name="android:textColorPrimary">#FD9C00</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
