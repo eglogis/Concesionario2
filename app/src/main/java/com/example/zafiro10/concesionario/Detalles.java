@@ -11,15 +11,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class Detalles extends AppCompatActivity {
 
     private AppBarLayout app_bar;
-    private TextView marca;
-    private TextView modelo;
-    private TextView precio;
-    private TextView descripcion;
+    private EditText marca;
+    private EditText modelo;
+    private EditText precio;
+    private EditText descripcion;
+    private FloatingActionButton fab;
+    Boolean modificar = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,24 +38,40 @@ public class Detalles extends AppCompatActivity {
         app_bar = (AppBarLayout)findViewById(R.id.app_bar);
         app_bar.setBackground(d);
 
-        marca = (TextView)findViewById(R.id.txvMarca);
+        marca = (EditText) findViewById(R.id.edtMarca);
         marca.setText(MainActivity.VehiculosDetalles.getMarca());
+        marca.setEnabled(false);
 
-        modelo = (TextView)findViewById(R.id.txvModelo);
-        modelo.setText(MainActivity.VehiculosDetalles.getModelo());
+        modelo = (EditText) findViewById(R.id.edtModelo);
+        modelo.setText(MainActivity.VehiculosDetalles.getMarca());
+        modelo.setEnabled(false);
 
-        precio = (TextView)findViewById(R.id.txvPrecio);
-        precio.setText(Float.toString(MainActivity.VehiculosDetalles.getPrecio()) + "€");
+        precio = (EditText) findViewById(R.id.edtPrecio);
+        precio.setText(Float.toString(MainActivity.VehiculosDetalles.getPrecio()));
+        precio.setEnabled(false);
 
-        descripcion = (TextView)findViewById(R.id.txvDescripcion);
+        descripcion = (EditText) findViewById(R.id.edtDescripcion);
         descripcion.setText(MainActivity.VehiculosDetalles.getDescripcion());
+        descripcion.setEnabled(false);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setImageResource(R.drawable.ic_form);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                MainActivity.databaseAccess.AbrirConexion();
+                MainActivity.databaseAccess.modificarCoche(MainActivity.VehiculosDetalles.getIdNuevo(), marca.getText().toString(), modelo.getText().toString(), Float.parseFloat(precio.getText().toString()), descripcion.getText().toString());
+                MainActivity.databaseAccess.CerrarConexcion();
+                finish();
+
+
+                fab.setImageResource(R.drawable.ic_form);
+                descripcion.setEnabled(false);
+                precio.setEnabled(false);
+                modelo.setEnabled(false);
+                marca.setEnabled(false);
             }
         });
     }
@@ -64,7 +83,7 @@ public class Detalles extends AppCompatActivity {
         return true;
     }
 
-   /* @Override
+   @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -72,11 +91,23 @@ public class Detalles extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        /*if (id == R.id.action_settings) {
+        if (id == R.id.menuModificar) {
+
+            fab.setImageResource(R.drawable.ic_add_black_24dp);
+            marca.setEnabled(true);
+            modelo.setEnabled(true);
+            precio.setEnabled(true);
+            descripcion.setEnabled(true);
             return true;
         }
+       if (id == R.id.menuBorrar) {
 
+           MainActivity.databaseAccess.AbrirConexion();
+           MainActivity.databaseAccess.borrarCoche(MainActivity.VehiculosDetalles.getIdNuevo());
+           MainActivity.databaseAccess.CerrarConexcion();
+           finish();
+           return true;
+       }
         return super.onOptionsItemSelected(item);
-    }*/
-
+    }
 }

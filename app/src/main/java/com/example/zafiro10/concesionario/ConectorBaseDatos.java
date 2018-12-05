@@ -1,5 +1,6 @@
 package com.example.zafiro10.concesionario;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -126,6 +127,22 @@ public class ConectorBaseDatos{
         return arrayExtras;
     }
 
+    public void modificarCoche(int id, String marca, String modelo, float precio, String descripcion) {
 
+        ContentValues valores = new ContentValues();
 
+        valores.put("marca", marca);
+        valores.put("modelo", modelo);
+        valores.put("precio", precio);
+        valores.put("descripcion", descripcion);
+
+        database.update("vehiculos_nuevos", valores, "id_vehiculo=" + id, null);
+
+    }
+
+    //METODO PARA BORRAR UN CLIENTE
+    public void borrarCoche(int id) {
+
+        database.delete("vehiculos_nuevos", "id_vehiculo=" + id, null);
+    }
 }

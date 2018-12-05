@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public static ArrayList<Extras> arrayExtras = new ArrayList<Extras>();
 
+    public  static ConectorBaseDatos databaseAccess;
+
     boolean click =false;
 
     /**
@@ -173,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 listView = (ListView) rootView.findViewById(R.id.listacoches);
 
-                ConectorBaseDatos databaseAccess = ConectorBaseDatos.getInstance(getActivity());
+                databaseAccess = ConectorBaseDatos.getInstance(getActivity());
                 databaseAccess.AbrirConexion();
                 arrayVehiculos = databaseAccess.todos_los_coches();
                 databaseAccess.CerrarConexcion();
@@ -266,5 +268,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             // Show 3 total pages.
             return 3;
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        MainActivity.databaseAccess.AbrirConexion();
+        arrayVehiculos=databaseAccess.todos_los_coches();
+        MainActivity.databaseAccess.CerrarConexcion();
+        adapter = new adaptadorCochesNuevos(this, arrayVehiculos);
+        listView.setAdapter(adapter);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
     }
 }

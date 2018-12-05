@@ -36,12 +36,24 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/txvMarca"
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edtMarca"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:text="NOMBREMARCA"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name"
                 android:textColor="@android:color/background_dark"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -70,12 +82,24 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/txvModelo"
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edtModelo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:text="NOMBREMODELO"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name"
                 android:textColor="@android:color/background_dark"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -104,12 +128,24 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/txvPrecio"
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edtPrecio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:text="PRECIOCOCHE"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name"
                 android:textColor="@android:color/background_dark"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -138,17 +174,19 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/txvDescripcion"
+        <EditText
+            android:id="@+id/edtDescripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
+            android:ems="10"
             android:gravity="center"
-            android:text="TextView"
+            android:inputType="textMultiLine"
             android:textColor="@android:color/background_dark"
             android:textSize="16sp"
             android:textStyle="bold" />
+
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
