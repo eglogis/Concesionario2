@@ -116,7 +116,7 @@ public class ConectorBaseDatos{
             //Recorremos el cursor hasta que no haya más registros
             do {
 
-                arrayExtras.add(new Extras(c.getInt(0), c.getString(1), c.getString(2), c.getFloat(3)));
+                arrayExtras.add(new Extras(false, c.getInt(0), c.getString(1), c.getString(2), c.getFloat(3)));
 
             } while(c.moveToNext());
         }

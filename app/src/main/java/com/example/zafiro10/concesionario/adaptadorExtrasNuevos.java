@@ -21,15 +21,6 @@ public class adaptadorExtrasNuevos extends BaseAdapter {
     }
 
 
-
-
-
-
-
-
-
-
-
     @Override
     public int getCount() {
         return items.size();

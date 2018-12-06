@@ -1,5 +1,6 @@
 package com.example.zafiro10.concesionario;
 
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -106,6 +107,12 @@ public class Detalles extends AppCompatActivity {
            MainActivity.databaseAccess.borrarCoche(MainActivity.VehiculosDetalles.getIdNuevo());
            MainActivity.databaseAccess.CerrarConexcion();
            finish();
+           return true;
+       }
+       if (id == R.id.menuInforme) {
+
+           Intent intent = new Intent(this, extras_selecionado.class);
+           startActivity(intent);
            return true;
        }
         return super.onOptionsItemSelected(item);

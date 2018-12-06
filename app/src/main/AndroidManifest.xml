@@ -22,7 +22,11 @@
         <activity
             android:name=".Detalles"
             android:label="@string/title_activity_detalles"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".extras_selecionado"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

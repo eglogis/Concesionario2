@@ -6,6 +6,16 @@ public class Extras {
     private String nombre;
     private String descripcion;
     private float precio;
+    private Boolean isSelect;
+
+    public Extras(Boolean isSelect, int id_extra, String nombre, String descripcion, float precio) {
+
+        this.isSelect = isSelect;
+        this.id_extra = id_extra;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+    }
 
 
     public Extras(int id_extra, String nombre, String descripcion, float precio) {
@@ -51,5 +61,13 @@ public class Extras {
 
     public void setPrecio(float precio) {
         this.precio = precio;
+    }
+
+    public Boolean getSelect() {
+        return isSelect;
+    }
+
+    public void setSelect(Boolean select) {
+        isSelect = select;
     }
 }
