@@ -18,12 +18,14 @@ import java.util.ArrayList;
 public class extras_selecionado extends AppCompatActivity {
 
     public ArrayList<Extras> arrayExtras = new ArrayList<Extras>();
+    public static ArrayList<Extras> arrayExtrasDialog = new ArrayList<Extras>();
     public adaptador_lista_extra adapterExtras;
     public ConectorBaseDatos databaseAccess;
     public ListView listView;
-    public float sumaprecio = 0;
+    public static float sumaprecio = 0;
     public TextView sumatorioprecio;
     public Toolbar toolbar;
+    Boolean hola = false;
     Boolean click = false;
 
     @Override
@@ -86,7 +88,30 @@ public class extras_selecionado extends AppCompatActivity {
                             .setInterpolator(interpolador)
                             .start();
                 }
+
+                for(int i=0; i<arrayExtras.size(); i++) {
+
+                    if(arrayExtras.get(i).getSelect() == true){
+
+                        arrayExtrasDialog.add(arrayExtras.get(i));
+
+                    }
+                    else{
+
+                        arrayExtrasDialog.remove(arrayExtras.get(i));
+                    }
+
+                }
+                Intent intent = new Intent(getApplicationContext(), resumen_extras.class);
+                startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        arrayExtrasDialog.clear();
     }
 }

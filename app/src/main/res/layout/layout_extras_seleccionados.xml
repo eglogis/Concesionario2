@@ -16,8 +16,16 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="42dp"
-            android:text="TextView" />
+            android:layout_marginTop="61dp"
+            android:background="@android:color/background_dark"
+            android:paddingLeft="5dp"
+            android:paddingTop="1dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="1dp"
+            android:text="TextView"
+            android:textColor="@android:color/background_light"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/precio"
@@ -25,8 +33,16 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="78dp"
-            android:text="TextView" />
+            android:layout_marginTop="94dp"
+            android:background="@android:color/darker_gray"
+            android:paddingLeft="5dp"
+            android:paddingTop="1dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="1dp"
+            android:text="TextView"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/descripcion"
@@ -34,9 +50,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="117dp"
+            android:layout_marginTop="124dp"
+            android:layout_marginBottom="25dp"
             android:gravity="center"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/imgcheck"
