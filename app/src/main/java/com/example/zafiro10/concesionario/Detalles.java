@@ -44,7 +44,7 @@ public class Detalles extends AppCompatActivity {
         marca.setEnabled(false);
 
         modelo = (EditText) findViewById(R.id.edtModelo);
-        modelo.setText(MainActivity.VehiculosDetalles.getMarca());
+        modelo.setText(MainActivity.VehiculosDetalles.getModelo());
         modelo.setEnabled(false);
 
         precio = (EditText) findViewById(R.id.edtPrecio);

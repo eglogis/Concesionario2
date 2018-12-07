@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.Calendar;
+
 public class resumen_extras extends AppCompatActivity {
 
     public TextView extrasSelct;
@@ -35,7 +37,7 @@ public class resumen_extras extends AppCompatActivity {
         nombre.setText(MainActivity.VehiculosDetalles.getMarca());
 
         precioextra = (TextView) findViewById(R.id.txvprecio);
-        precioextra.setText(Float.toString(extras_selecionado.sumaprecio));
+        precioextra.setText(Float.toString(extras_selecionado.sumaprecio + MainActivity.VehiculosDetalles.getPrecio()));
 
         extrasSelct = (TextView) findViewById(R.id.extraSelect);
 
@@ -121,17 +123,7 @@ public class resumen_extras extends AppCompatActivity {
 
                     }
                 });
-                final EditText mFecha = (EditText) mView.findViewById(R.id.edtFecha);
-                mFecha.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
 
-                        if(mFecha.getText().toString().equals("- Introduce fecha -")) {
-                            mFecha.setText("");
-                        }
-
-                    }
-                });
                 final Button mAceptar = (Button) mView.findViewById(R.id.btnAceptar);
 
 
@@ -151,7 +143,8 @@ public class resumen_extras extends AppCompatActivity {
                         emailIntent.putExtra(Intent.EXTRA_CC, "");
                         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Formulario del cliente con su pedido");
 
-                        emailIntent.putExtra(Intent.EXTRA_TEXT, mNombre.getText().toString() +" "+mApellidos.getText().toString() + "\n"+ mTelefono.getText().toString() + "\n"+ mEmail.getText().toString()+ "\n"+ mDireccion.getText().toString() + "\n"+ mPoblacion.getText().toString() + "\n"+ mFecha.getText().toString());
+                        emailIntent.putExtra(Intent.EXTRA_TEXT, "-------- NOMBRE --------" + "\n" + "\n" + mNombre.getText().toString() +" "+mApellidos.getText().toString() + "\n"+ "\n" + "-------- TELEFONO --------" +"\n"+ "\n" + mTelefono.getText().toString() + "\n"+ "\n" +"-------- CORREO ELECTRONICO --------"+ "\n" + "\n" + mEmail.getText().toString()+ "\n"+ "\n" +"-------- DIRECCION --------"+ "\n" + "\n" + mDireccion.getText().toString() +
+                                "\n" + "\n" + "-------- POBLACION --------" + "\n" + "\n" + mPoblacion.getText().toString() + "\n" + "\n" + "-------- FECHA --------" + "\n" + "\n" + Calendar.getInstance().getTime()+ "\n" + "\n" +"-------- NOMBRE DEL COCHE --------" +" \n "+ "\n" + MainActivity.VehiculosDetalles.getMarca() +" "+ MainActivity.VehiculosDetalles.getModelo() + "\n" + "\n" +"-------- EXTRAS --------" +" \n "+ "\n" + aux + "\n" + "\n" +"-------- PRECIO --------" +" \n "+ "\n" + precioextra.getText().toString()+"€");
 
                         startActivity(Intent.createChooser(emailIntent,  "Formulario del cliente con su pedido"));
                         //finish();

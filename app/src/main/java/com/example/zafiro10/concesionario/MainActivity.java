@@ -99,6 +99,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                             .start();
                 }
 
+                Intent intent2 = new Intent(getApplicationContext(), nuevo_coche.class);
+                startActivity(intent2);
+
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
             }

@@ -145,4 +145,18 @@ public class ConectorBaseDatos{
 
         database.delete("vehiculos_nuevos", "id_vehiculo=" + id, null);
     }
+
+    //METODO PARA INSERTAR UN CLIENTE
+    public void insertarCocheNuevo(String marca, String modelo, byte[] imagen, float precio, String descripcion) {
+
+            ContentValues valores = new ContentValues();
+
+            valores.put("marca", marca);
+            valores.put("modelo", modelo);
+            valores.put("imagen", imagen);
+            valores.put("precio", precio);
+            valores.put("descripcion", descripcion);
+
+            database.insert("vehiculos_nuevos", null, valores);
+    }
 }
