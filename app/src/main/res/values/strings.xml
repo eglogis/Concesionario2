@@ -99,4 +99,5 @@
     <string name="title_activity_resumen_extras">resumen_extras</string>
     <string name="title_activity_nuevo_coche">nuevo_coche</string>
     <string name="title_activity_conocenos">Map</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
 </resources>

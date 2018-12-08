@@ -59,7 +59,11 @@
 
         <activity
             android:name=".conocenos"
-            android:label="@string/title_activity_conocenos"></activity>
+            android:label="@string/title_activity_conocenos" />
+        <activity
+            android:name=".ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

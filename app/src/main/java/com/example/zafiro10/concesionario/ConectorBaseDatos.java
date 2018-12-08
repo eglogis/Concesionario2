@@ -48,6 +48,7 @@ public class ConectorBaseDatos{
 
         //Ejecutamos la cadena
         //c = databases.query("provincia", valores_recuperar,null, null, null, null, null, null);
+
         c = database.rawQuery(" SELECT * FROM vehiculos_nuevos", null);
 
         //Nos aseguramos de que existe al menos un registro
@@ -64,8 +65,6 @@ public class ConectorBaseDatos{
 
         //devolvemos el array
         return arrayVehiculos;
-
-
     }
 
     //METODO PARA RECUPERAR LOS COCHES DE OCASION DE LA BASE DE DATOS
@@ -158,5 +157,53 @@ public class ConectorBaseDatos{
             valores.put("descripcion", descripcion);
 
             database.insert("vehiculos_nuevos", null, valores);
+    }
+
+    ArrayList<Extras> todos_los_extras_ocasion(int id)
+    {
+        Cursor c;
+        //Array donde se devuelven todos los coches
+        ArrayList<Extras> arrayExtras = new ArrayList<Extras>();
+
+
+        //definimos la sentencia sql en una cadena
+        // String[] valores_recuperar = {"cod_provincia", "nombre_provincia", "num_habitantes"};
+
+        //Ejecutamos la cadena
+        //c = databases.query("provincia", valores_recuperar,null, null, null, null, null, null);
+
+        c = database.rawQuery("Select extras_vehiculos.nombre from extras_vehiculos inner join extras_ocasion on extras_vehiculos.id_extra = extras_ocasion.id_extras where extras_ocasion.id_vehiculo =" + id, null);
+
+        //Nos aseguramos de que existe al menos un registro
+        if (c.moveToFirst()) {
+            //Recorremos el cursor hasta que no haya más registros
+            do {
+
+                arrayExtras.add(new Extras(c.getString(0)));
+
+            } while(c.moveToNext());
+        }
+        //cerramos el cursor
+        c.close();
+
+        //devolvemos el array
+        return arrayExtras;
+    }
+
+    public void borrarCocheOcasion(int id) {
+
+        database.delete("vehiculos_ocasion", "id_vehiculo=" + id, null);
+    }
+
+    public void modificarCocheOcasion(int id, String marca, String modelo, float precio, String descripcion) {
+
+        ContentValues valores = new ContentValues();
+
+        valores.put("marca", marca);
+        valores.put("modelo", modelo);
+        valores.put("precio", precio);
+        valores.put("descripcion", descripcion);
+
+        database.update("vehiculos_ocasion", valores, "id_vehiculo=" + id, null);
     }
 }

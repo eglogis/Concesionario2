@@ -31,6 +31,10 @@ public class Extras {
         this.precio = precio;
     }
 
+    public Extras(String nombre) {
+        this.nombre = nombre;
+    }
+
     public int getId_extra() {
         return id_extra;
     }

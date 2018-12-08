@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public static ListView listView;
 
+
     public static adaptadorCochesNuevos adapter;
     public static adaptadorExtrasNuevos adapterExtras;
 
@@ -38,9 +39,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public static  Vehiculos VehiculosDetalles;
 
+    public static Vehiculos VehiculosOcasionDetalles;
+
     public static ArrayList<Vehiculos> arrayVehiculosOcasion = new ArrayList();
 
     public static ArrayList<Extras> arrayExtras = new ArrayList<Extras>();
+    public static ArrayList<Extras> arrayExtrasOcasion = new ArrayList<Extras>();
 
     public  static ConectorBaseDatos databaseAccess;
 
@@ -215,7 +219,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     public void onItemClick(AdapterView<?> adapter, View v, int position,
                                             long arg3)
                     {
-
+                        VehiculosOcasionDetalles = arrayVehiculosOcasion.get(position);
+                        Intent intent = new Intent(getActivity(), ScrollingActivity.class);
+                        startActivity(intent);
                     }
                 });
             }

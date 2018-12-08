@@ -3,6 +3,8 @@ package com.example.zafiro10.concesionario;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import java.io.ByteArrayInputStream;
+
 public class Vehiculos {
 
     private int id;
@@ -20,7 +22,9 @@ public class Vehiculos {
         this.marca = marca;
         this.modelo = modelo;
         this.imagen = imagen;
-        this.imagenBitmap = BitmapFactory.decodeByteArray(this.imagen,0,this.imagen.length);
+        ByteArrayInputStream arrayInputStream = new ByteArrayInputStream(this.imagen);
+        this.imagenBitmap = BitmapFactory.decodeStream(arrayInputStream);
+        //this.imagenBitmap = BitmapFactory.decodeByteArray(this.imagen,0,this.imagen.length);
         this.precio = precio;
         this.descripcion = descripcion;
     }

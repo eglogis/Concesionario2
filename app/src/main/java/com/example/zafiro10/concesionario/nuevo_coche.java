@@ -77,7 +77,7 @@ public class nuevo_coche extends AppCompatActivity {
             public void onClick(View view) {
 
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 10, stream);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 imagenbyte = stream.toByteArray();
 
 
@@ -114,10 +114,6 @@ public class nuevo_coche extends AppCompatActivity {
         Intent intentCamara=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intentCamara.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imagen));
         startActivityForResult(intentCamara, COD_CAMARA);
-
-
-
-
     }
 
     @Override
@@ -138,7 +134,6 @@ public class nuevo_coche extends AppCompatActivity {
 
                 bitmap = BitmapFactory.decodeFile(path);
                 imagenCamara.setImageBitmap(bitmap);
-
 
             }
 
