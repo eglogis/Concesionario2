@@ -20,12 +20,14 @@ import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
 public class nuevo_coche extends AppCompatActivity {
 
     ImageView imagenCamara;
+    ImageView imagenCamaraGaleria;
     TextView textoCambiarImagen;
     EditText marcaNueva;
     EditText modeloNuevo;
@@ -36,6 +38,7 @@ public class nuevo_coche extends AppCompatActivity {
     private final String RUTA_IMAGEN=CARPETA_RAIZ+"misFotos";
     Bitmap bitmap;
     private final int COD_CAMARA=10;
+    private final int RESULT_LOAD_IMG=20;
     String path;
 
     @Override
@@ -70,6 +73,21 @@ public class nuevo_coche extends AppCompatActivity {
             }
         });
 
+        imagenCamaraGaleria = (ImageView) findViewById(R.id.imgGaleria);
+        imagenCamaraGaleria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Snackbar.make(view, "Se abrira la galeria", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+                //tomarfotoGaleria();
+                textoCambiarImagen.setAlpha(1.0f);
+
+
+            }
+        });
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -93,26 +111,17 @@ public class nuevo_coche extends AppCompatActivity {
         });
     }
 
+    private void tomarfotoGaleria() {
+
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
+
+    }
+
     private void tomarfoto() {
 
-        File fileImagen=new File(Environment.getExternalStorageDirectory(), RUTA_IMAGEN);
-        boolean isCreate = fileImagen.exists();
-        String nombre = "";
-
-        if(isCreate == false){
-            isCreate = fileImagen.mkdirs();
-
-        }
-        if(isCreate == true){
-            nombre = (System.currentTimeMillis()/100)+".jpg";
-
-        }
-
-        path=Environment.getExternalStorageDirectory() + File.separator+RUTA_IMAGEN+File.separator+nombre;
-
-        File imagen=new File(path);
         Intent intentCamara=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intentCamara.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imagen));
         startActivityForResult(intentCamara, COD_CAMARA);
     }
 
@@ -124,22 +133,21 @@ public class nuevo_coche extends AppCompatActivity {
 
             if(COD_CAMARA == 10){
 
-                MediaScannerConnection.scanFile(this, new String[]{path}, null, new MediaScannerConnection.OnScanCompletedListener() {
-                    @Override
-                    public void onScanCompleted(String s, Uri uri) {
-                        Log.i("RUTA DE ALMACENAMIENTO", "Path: "+path);
-
-                    }
-                });
-
-                bitmap = BitmapFactory.decodeFile(path);
+                bitmap = (Bitmap) data.getExtras().get("data");
                 imagenCamara.setImageBitmap(bitmap);
-
             }
 
+            /*if(RESULT_LOAD_IMG == 20){
+
+                Uri uri = data.getData();
+                try {
+                    bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                imagenCamaraGaleria.setImageBitmap(bitmap);
+            }*/
         }
     }
-
-
-
 }

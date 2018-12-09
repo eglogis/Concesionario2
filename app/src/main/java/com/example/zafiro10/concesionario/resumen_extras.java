@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -131,23 +132,32 @@ public class resumen_extras extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 
-                        Snackbar.make(view, "Se te redigira a una aplicacion de correo", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
+
+                        if(mNombre.getText().toString().isEmpty() || mApellidos.getText().toString().isEmpty() || mEmail.getText().toString().isEmpty() || mDireccion.getText().toString().isEmpty() || mPoblacion.getText().toString().isEmpty() || mTelefono.getText().toString().isEmpty()){
+
+                            Toast toast1 = Toast.makeText(getApplicationContext(), "Es obligatorio que ponga todos los campos", Toast.LENGTH_SHORT);
+                            toast1.show();
+                        }
+                        else {
+
+                            Snackbar.make(view, "Se te redigira a una aplicacion de correo", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
 
 
-                        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                        emailIntent.setData(Uri.parse("mailto:"));
-                        //Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto","samu6333@gmail.com", null));
-                        emailIntent.setType("text/plain");
-                        emailIntent.putExtra(Intent.EXTRA_EMAIL, "samu6333@gmail.com");
-                        emailIntent.putExtra(Intent.EXTRA_CC, "");
-                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Formulario del cliente con su pedido");
+                            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                            emailIntent.setData(Uri.parse("mailto:"));
+                            //Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto","samu6333@gmail.com", null));
+                            emailIntent.setType("text/plain");
+                            emailIntent.putExtra(Intent.EXTRA_EMAIL, "samu6333@gmail.com");
+                            emailIntent.putExtra(Intent.EXTRA_CC, "");
+                            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Formulario del cliente con su pedido");
 
-                        emailIntent.putExtra(Intent.EXTRA_TEXT, "-------- NOMBRE --------" + "\n" + "\n" + mNombre.getText().toString() +" "+mApellidos.getText().toString() + "\n"+ "\n" + "-------- TELEFONO --------" +"\n"+ "\n" + mTelefono.getText().toString() + "\n"+ "\n" +"-------- CORREO ELECTRONICO --------"+ "\n" + "\n" + mEmail.getText().toString()+ "\n"+ "\n" +"-------- DIRECCION --------"+ "\n" + "\n" + mDireccion.getText().toString() +
-                                "\n" + "\n" + "-------- POBLACION --------" + "\n" + "\n" + mPoblacion.getText().toString() + "\n" + "\n" + "-------- FECHA --------" + "\n" + "\n" + Calendar.getInstance().getTime()+ "\n" + "\n" +"-------- NOMBRE DEL COCHE --------" +" \n "+ "\n" + MainActivity.VehiculosDetalles.getMarca() +" "+ MainActivity.VehiculosDetalles.getModelo() + "\n" + "\n" +"-------- EXTRAS --------" +" \n "+ "\n" + aux + "\n" + "\n" +"-------- PRECIO --------" +" \n "+ "\n" + precioextra.getText().toString()+"€");
+                            emailIntent.putExtra(Intent.EXTRA_TEXT, "-------- NOMBRE --------" + "\n" + "\n" + mNombre.getText().toString() + " " + mApellidos.getText().toString() + "\n" + "\n" + "-------- TELEFONO --------" + "\n" + "\n" + mTelefono.getText().toString() + "\n" + "\n" + "-------- CORREO ELECTRONICO --------" + "\n" + "\n" + mEmail.getText().toString() + "\n" + "\n" + "-------- DIRECCION --------" + "\n" + "\n" + mDireccion.getText().toString() +
+                                    "\n" + "\n" + "-------- POBLACION --------" + "\n" + "\n" + mPoblacion.getText().toString() + "\n" + "\n" + "-------- FECHA --------" + "\n" + "\n" + Calendar.getInstance().getTime() + "\n" + "\n" + "-------- NOMBRE DEL COCHE --------" + " \n " + "\n" + MainActivity.VehiculosDetalles.getMarca() + " " + MainActivity.VehiculosDetalles.getModelo() + "\n" + "\n" + "-------- EXTRAS --------" + " \n " + "\n" + aux + "\n" + "\n" + "-------- PRECIO --------" + " \n " + "\n" + precioextra.getText().toString() + "€");
 
-                        startActivity(Intent.createChooser(emailIntent,  "Formulario del cliente con su pedido"));
-                        //finish();
+                            startActivity(Intent.createChooser(emailIntent, "Formulario del cliente con su pedido"));
+                            //finish();
+                        }
                     }
                 });
 

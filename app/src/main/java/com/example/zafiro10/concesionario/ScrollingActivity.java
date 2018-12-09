@@ -3,19 +3,25 @@ package com.example.zafiro10.concesionario;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.Calendar;
 
 public class ScrollingActivity extends AppCompatActivity {
 
@@ -119,6 +125,51 @@ public class ScrollingActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.menuAdquisicion) {
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(ScrollingActivity.this);
+            View mView = getLayoutInflater().inflate(R.layout.dialogo_adquisicion, null);
+
+
+            final EditText nombre = (EditText)mView.findViewById(R.id.edtNombreAdq);
+            final Button aceptar = (Button)mView.findViewById(R.id.btnAceptar);
+
+
+            aceptar.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+
+                    if(nombre.getText().toString().isEmpty()){
+
+                        Toast toast1 = Toast.makeText(getApplicationContext(), "No has escrito el nombre", Toast.LENGTH_SHORT);
+                        toast1.show();
+                    }
+                    else {
+
+
+                        Snackbar.make(view, "Se te redigira a una aplicacion de correo", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+
+
+                        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                        emailIntent.setData(Uri.parse("mailto:"));
+                        //Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto","samu6333@gmail.com", null));
+                        emailIntent.setType("text/plain");
+                        emailIntent.putExtra(Intent.EXTRA_EMAIL, "samu6333@gmail.com");
+                        emailIntent.putExtra(Intent.EXTRA_CC, "");
+                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Formulario del cliente con su pedido de adquisicion de un vehiculo de ocasion");
+
+                        emailIntent.putExtra(Intent.EXTRA_TEXT, "-------- NOMBRE DEL CLIENTE --------" + "\n" + "\n" + nombre.getText().toString() + "\n" + "\n" + "-------- VEHICULO QUE QUIERE ADQUIRIR --------" + "\n" + "\n" + MainActivity.VehiculosOcasionDetalles.getMarca() + " " + MainActivity.VehiculosOcasionDetalles.getModelo());
+
+                        startActivity(Intent.createChooser(emailIntent, "Formulario del cliente con su pedido"));
+                    }
+
+                }
+            });
+
+            mBuilder.setView(mView);
+            AlertDialog dialog = mBuilder.create();
+            dialog.show();
+
 
 
             return true;
