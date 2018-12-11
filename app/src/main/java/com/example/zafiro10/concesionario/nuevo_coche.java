@@ -27,7 +27,6 @@ import java.util.ArrayList;
 public class nuevo_coche extends AppCompatActivity {
 
     ImageView imagenCamara;
-    ImageView imagenCamaraGaleria;
     TextView textoCambiarImagen;
     EditText marcaNueva;
     EditText modeloNuevo;
@@ -68,22 +67,6 @@ public class nuevo_coche extends AppCompatActivity {
 
                 tomarfoto();
                 textoCambiarImagen.setAlpha(1.0f);
-
-
-            }
-        });
-
-        imagenCamaraGaleria = (ImageView) findViewById(R.id.imgGaleria);
-        imagenCamaraGaleria.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Snackbar.make(view, "Se abrira la galeria", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
-                //tomarfotoGaleria();
-                textoCambiarImagen.setAlpha(1.0f);
-
 
             }
         });
@@ -136,18 +119,6 @@ public class nuevo_coche extends AppCompatActivity {
                 bitmap = (Bitmap) data.getExtras().get("data");
                 imagenCamara.setImageBitmap(bitmap);
             }
-
-            /*if(RESULT_LOAD_IMG == 20){
-
-                Uri uri = data.getData();
-                try {
-                    bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                imagenCamaraGaleria.setImageBitmap(bitmap);
-            }*/
         }
     }
 }

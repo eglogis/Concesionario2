@@ -40,12 +40,10 @@ public class conocenos extends FragmentActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(37.5889892, -4.651191799999992);
         CameraUpdate miUbicacion=CameraUpdateFactory.newLatLngZoom(sydney,16);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Nombre: Concesionario" + "\n" + "Calle: Los manantiales" + "\n" + "Mañanas: de 8:00 a 13:00" + "\n" + "Tardes: de 14:00 a 20:00"));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.animateCamera(miUbicacion);
     }
 }
