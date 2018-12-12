@@ -159,6 +159,19 @@ public class ConectorBaseDatos{
             database.insert("vehiculos_nuevos", null, valores);
     }
 
+    public void insertarCocheOcasion(String marca, String modelo, byte[] imagen, float precio, String descripcion) {
+
+        ContentValues valores = new ContentValues();
+
+        valores.put("marca", marca);
+        valores.put("modelo", modelo);
+        valores.put("imagen", imagen);
+        valores.put("precio", precio);
+        valores.put("descripcion", descripcion);
+
+        database.insert("vehiculos_ocasion", null, valores);
+    }
+
     ArrayList<Extras> todos_los_extras_ocasion(int id)
     {
         Cursor c;

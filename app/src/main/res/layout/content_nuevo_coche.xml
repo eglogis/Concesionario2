@@ -23,6 +23,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="162dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="2dp"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
+            android:text="Nuevo Coche"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/imgCamara"
             android:layout_width="210dp"
@@ -50,7 +62,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Marca:" />
+                android:background="@color/colorPrimary"
+                android:paddingLeft="2dp"
+                android:paddingTop="1dp"
+                android:paddingRight="2dp"
+                android:paddingBottom="1dp"
+                android:text="Marca:"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edtMarcaNueva"
@@ -58,8 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout
@@ -73,7 +92,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Modelo:" />
+                android:background="@color/colorPrimary"
+                android:paddingLeft="2dp"
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
+                android:text="Modelo:"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edtModeloNueva"
@@ -81,8 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout
@@ -96,7 +121,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Precio:" />
+                android:background="@color/colorPrimary"
+                android:paddingLeft="2dp"
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
+                android:text="Precio:"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edtPrecioNueva"
@@ -104,8 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
         </LinearLayout>
 
         <TextView
@@ -113,8 +144,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:background="@color/colorPrimary"
             android:gravity="center"
-            android:text="Descripcion" />
+            android:paddingLeft="2dp"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
+            android:text="Descripcion"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edtDescripcionNueva"

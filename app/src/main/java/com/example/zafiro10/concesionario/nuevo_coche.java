@@ -16,7 +16,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -32,6 +34,7 @@ public class nuevo_coche extends AppCompatActivity {
     EditText modeloNuevo;
     EditText precioNuevo;
     EditText descripcionNuevo;
+    Switch coche_nuevo_ocasion;
     byte[] imagenbyte;
     private final String CARPETA_RAIZ="misImagenesPrueba/";
     private final String RUTA_IMAGEN=CARPETA_RAIZ+"misFotos";
@@ -53,6 +56,7 @@ public class nuevo_coche extends AppCompatActivity {
         modeloNuevo = (EditText)findViewById(R.id.edtModeloNueva);
         precioNuevo = (EditText)findViewById(R.id.edtPrecioNueva);
         descripcionNuevo = (EditText)findViewById(R.id.edtDescripcionNueva);
+        coche_nuevo_ocasion = (Switch) findViewById(R.id.switch1);
 
         textoCambiarImagen = (TextView)findViewById(R.id.txvCambiar);
         textoCambiarImagen.setAlpha(0.0f);
@@ -81,12 +85,32 @@ public class nuevo_coche extends AppCompatActivity {
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 imagenbyte = stream.toByteArray();
 
+                if(marcaNueva.getText().toString().isEmpty() || modeloNuevo.getText().toString().isEmpty() || precioNuevo.getText().toString().isEmpty() || descripcionNuevo.getText().toString().isEmpty()){
+
+                    Toast toast1 = Toast.makeText(getApplicationContext(), "Es obligatorio que ponga todos los campos", Toast.LENGTH_SHORT);
+                    toast1.show();
 
 
-                MainActivity.databaseAccess.AbrirConexion();
-                MainActivity.databaseAccess.insertarCocheNuevo(marcaNueva.getText().toString(), modeloNuevo.getText().toString(), imagenbyte, Float.parseFloat(precioNuevo.getText().toString()), descripcionNuevo.getText().toString());
-                MainActivity.databaseAccess.CerrarConexcion();
-                finish();
+
+                }
+                else {
+
+                    if (coche_nuevo_ocasion.isChecked() == true) {
+
+                        MainActivity.databaseAccess.AbrirConexion();
+                        MainActivity.databaseAccess.insertarCocheNuevo(marcaNueva.getText().toString(), modeloNuevo.getText().toString(), imagenbyte, Float.parseFloat(precioNuevo.getText().toString()), descripcionNuevo.getText().toString());
+                        MainActivity.databaseAccess.CerrarConexcion();
+                        finish();
+                    } else {
+
+                        MainActivity.databaseAccess.AbrirConexion();
+                        MainActivity.databaseAccess.insertarCocheOcasion(marcaNueva.getText().toString(), modeloNuevo.getText().toString(), imagenbyte, Float.parseFloat(precioNuevo.getText().toString()), descripcionNuevo.getText().toString());
+                        MainActivity.databaseAccess.CerrarConexcion();
+                        finish();
+
+                    }
+                }
+
 
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/

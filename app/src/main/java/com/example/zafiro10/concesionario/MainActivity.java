@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public  static ConectorBaseDatos databaseAccess;
 
+
     boolean click =false;
 
     /**
@@ -103,8 +104,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                             .start();
                 }
 
-                Intent intent2 = new Intent(getApplicationContext(), nuevo_coche.class);
-                startActivity(intent2);
+
+
+
+                    Intent intent2 = new Intent(getApplicationContext(), nuevo_coche.class);
+                    startActivity(intent2);
+
 
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
@@ -177,6 +182,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             if(getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
 
+
+
                 listView = (ListView) rootView.findViewById(R.id.listacoches);
 
                 databaseAccess = ConectorBaseDatos.getInstance(getActivity());
@@ -202,6 +209,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
             if(getArguments().getInt(ARG_SECTION_NUMBER) == 2) {
                 //textView.setText("adios");
+
+
 
                 listView = (ListView) rootView.findViewById(R.id.listacoches);
 
