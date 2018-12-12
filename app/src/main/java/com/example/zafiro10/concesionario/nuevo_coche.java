@@ -89,9 +89,6 @@ public class nuevo_coche extends AppCompatActivity {
 
                     Toast toast1 = Toast.makeText(getApplicationContext(), "Es obligatorio que ponga todos los campos", Toast.LENGTH_SHORT);
                     toast1.show();
-
-
-
                 }
                 else {
 

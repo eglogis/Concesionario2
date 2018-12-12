@@ -1,3 +1,11 @@
+/*
+* Realizado por: Samuel Bautista Sanchez
+* DNI: 20227866X
+* Asignatura: Desarrollo de Aplicaciones Multiplataforma
+* */
+
+
+
 package com.example.zafiro10.concesionario;
 
 import android.content.Intent;
